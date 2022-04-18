@@ -2,9 +2,6 @@ package com.jonaskaad.paperfortuneteller;
 
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
-import javafx.application.Platform;
-import javafx.beans.binding.Bindings;
-import javafx.beans.property.DoubleProperty;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -14,17 +11,14 @@ import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
-import javafx.scene.layout.StackPane;
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
-import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 import javafx.util.Duration;
 import javafx.scene.media.MediaView;
 
 import java.io.File;
 import java.io.IOException;
-import java.net.MalformedURLException;
 import java.net.URISyntaxException;
 import java.util.concurrent.atomic.AtomicInteger;
 
@@ -75,25 +69,7 @@ public class PrimaryController {
             resultAnchorPane.setDisable(true);
             resultAnchorPane.setOpacity(0);
             resultAnchorPane.setVisible(false);
-           // mediaView = new MediaView();
         }
-        /*
-        if(outPut1){
-            if (topLeftButton != null){
-                setButtonOutput1();
-                resultAnchorPane.setDisable(true);
-                resultAnchorPane.setOpacity(0);
-                mediaView = new MediaView();
-            }
-        }
-        else {
-            if (topRightButton != null){
-                setButtonOutput2();
-                resultAnchorPane.setDisable(true);
-                resultAnchorPane.setOpacity(0);
-                mediaView = new MediaView();
-            }
-        }*/
     }
 
     public void colorButtonHandler(ActionEvent event) throws IOException {
@@ -113,11 +89,6 @@ public class PrimaryController {
     }
     int numberPicked;
     public void buttonHandler(ActionEvent event) {
-        /*if(amountOfTimesFlipped >= 2){
-            System.out.println("You have flipped 2 times now!");
-            testLabel.setText("TOO MANY FLIP FLAPS!");
-        }*/
-        //numberPicked = 1;
         if (event.getSource() == topLeftButton) {
             numberPicked = Integer.parseInt(topLeftButton.getText());
         }
@@ -220,7 +191,6 @@ public class PrimaryController {
                 } catch (URISyntaxException e) {
                     e.printStackTrace();
                 }
-                //new Image(getClass().getResource(filename).toURI().toString())
             }
             case 2 -> {
                 winLabel.setText("Some Peanuts");
@@ -283,52 +253,4 @@ public class PrimaryController {
         botLeftButton.setText("6");
         botRightButton.setText("2");
     }
-/*
-    public class FortuneSelector implements Runnable{
-        private int i;
-        private boolean running;
-        private int counter = 0;
-
-        public FortuneSelector(int i){
-            this.i = i;
-        }
-
-        @Override
-        public void run() {
-            running = true;
-
-            while (running) {
-                System.out.println(counter);
-                if(counter != 5) {
-                    Platform.runLater(new Runnable() {
-                        @Override
-                        public void run() {
-                            if (counter % 2 == 0) {
-                                testLabel.setText("111");
-                                System.out.println("changed to 11");
-                            } else {
-                                testLabel.setText("222");
-                                System.out.println("changed to 22");
-                            }
-                        }
-                    });
-                }
-                synchronized (this) {
-                    try {
-                        wait(200);
-                    } catch (InterruptedException ex) {
-                        System.out.println("Interrupted: " + Thread.currentThread());
-                        running = false;
-                    }
-                }
-                counter++;
-                if(counter == i){
-                    break;
-                }
-            }
-
-        }
-    }
-*/
-
 }
